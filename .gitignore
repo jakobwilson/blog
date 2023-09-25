@@ -1,0 +1,8 @@
+.DS_Store
+
+
+node_modules/
+
+src/server/config
+dist/
+public/js/app.js
