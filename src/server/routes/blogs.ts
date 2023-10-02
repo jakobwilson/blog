@@ -20,6 +20,7 @@ router.get('/', async (req, res) => {
     try {
         let blogs = await database.blogs.all();
         res.json(blogs)
+        
     } catch(e) {
         console.log(e);
         res.sendStatus(500).json({message: "Unable to get blogs"})
@@ -33,6 +34,7 @@ router.post('/', async (req, res) => {
         const { title, content, authorid, tagid } = req.body;
         if (!title || !content || !authorid) return res.status(400).json({message: "missing info."});
         const results = await database.blogs.create(title, content, authorid);
+        await database.blogtags.create({ blogid: results.insertId, tagid })
         res.status(201).json({message: "Blog post created!"});
     } catch (e) {
         console.log(e);
@@ -44,6 +46,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const id = Number(req.params.id);
     try {
+        await database.blogtags.destroy(id);
         await database.blogs.destroy(id);
         res.status(200).json({message: "Blog deleted."});
     } catch(e) {

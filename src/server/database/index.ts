@@ -1,13 +1,14 @@
 import * as mysql from "mysql";
 import config from "../config";
 import blogs from "./blogs";
+import blogtags from "./blogtags";
 
 export const Connection = mysql.createPool(config.mysql);
 
 
-export const Query = (query: string, values?:Array<string | number>) => {
+export const Query = <T=mysql.OkPacket>(query: string, values?:Array<string | number>) => {
 
-    return new Promise<Array<any>>((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
         Connection.query( query, values, (err, results) => {
             if(err) return reject(err);
             return resolve(results);
@@ -17,5 +18,6 @@ export const Query = (query: string, values?:Array<string | number>) => {
 
 
 export default {
-    blogs
+    blogs,
+    blogtags
 }
