@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import BlogApp from "./components/Blogs";
 import Details from "./components/Details";
 import CreateBlog from "./components/CreateBlog";
+import DeleteBlog from "./components/DeleteBlog";
 
 
 const App = () => {
@@ -20,17 +21,6 @@ const App = () => {
   );
 };
 
-const DeleteBlog = () => {
-  const { id } = useParams();
-  const handleDeleteBlog = () => {
-    console.log(`Deleting Blog with ID ${id}`);
-  };
-  return (
-    <div>
-      <h2>DeleteBlog</h2>
-      <button onClick={handleDeleteBlog}>Confirm Deletion</button>
-    </div>
-  );
-};
+
 
 export default App;

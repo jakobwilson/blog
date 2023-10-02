@@ -3,20 +3,15 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { BlogJoined } from "../../types";
 
-interface Iblog {
-    id: number;
-    title: string;
-    content: string;
-    authorid: number;
-    _created: string;
-  }
+
 
   const BlogDetails = () => {
     const nav = useNavigate();
     const { id } = useParams<{ id?: string }>();
     const blogId = id ? parseInt(id, 10) : null;
-    const [blog, setBlog] = useState<Iblog | null>(null);
+    const [blog, setBlog] = useState<BlogJoined | null>(null);
 
     useEffect(() => {
         async function fetchBlogDetails() {
@@ -72,7 +67,7 @@ interface Iblog {
           setIsEditing(!isEditing);
         };
       
-        const handleUpdateBlog = async (e) => {
+        const handleUpdateBlog = async (e:React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           try {
             const updateData = {
@@ -120,15 +115,16 @@ interface Iblog {
             !isEditing && <div className="details-page">
               <h1 className="details-title">Blog Details</h1>
           <p>ID: {blog.id}</p>
-          <p>Author ID: {blog.authorid}</p>
+          <p>Author: {blog.name}</p>
           <p>Title: {blog.title}</p>
           <p>Content: {blog.content}</p>
+          <p>Hashtag: {blog.tag}</p>
           <p>Created: {blog._created}</p>
           </div>
           }
         
           {isEditing ? (
-            <form className="edit-form" onSubmit={handleUpdateBlog}>
+            <form className="edit-form">
               <input className="edit-title"
                 type="text"
                 name="title"
@@ -147,7 +143,7 @@ interface Iblog {
               <button className="edit-blog-btn col" onClick={toggleEditMode}>
             Cancel 
             </button>
-              <button className="edit-blog-btn" type="submit">Submit</button>
+              <button className="edit-blog-btn" onClick={handleUpdateBlog}>Submit</button>
               
               </div>
             </form>

@@ -1,17 +1,12 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { BlogJoined } from "../../types";
 
-interface Iblog {
-  id: number;
-  title: string;
-  content: string;
-  authorid: number;
-  _created: string;
-}
+
 
 const BlogApp = () => {
-  const [blogs, setBlogs] = useState<Iblog[]>([]);
+  const [blogs, setBlogs] = useState<BlogJoined[]>([]);
 
   useEffect(() => {
     async function fetchBlogs() {

@@ -2,6 +2,8 @@ import * as mysql from "mysql";
 import config from "../config";
 import blogs from "./blogs";
 import blogtags from "./blogtags";
+import tags from "./tags";
+import authors from "./authors";
 
 export const Connection = mysql.createPool(config.mysql);
 
@@ -19,5 +21,7 @@ export const Query = <T=mysql.OkPacket>(query: string, values?:Array<string | nu
 
 export default {
     blogs,
-    blogtags
+    blogtags,
+    tags,
+    authors
 }

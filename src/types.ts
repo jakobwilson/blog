@@ -3,7 +3,7 @@ export interface Blog {
     title : string;
     content: string;
     authorid: Author["id"];
-    created_at: string;
+    _created: string;
 }
 
 export interface Author {
@@ -11,4 +11,14 @@ export interface Author {
     name: string;
     email: string;
     created_at: string;
+}
+
+export interface Tags {
+    id: number;
+    name: string;
+}
+
+export interface BlogJoined extends Blog {
+    tag: string;
+    name: string;
 }
