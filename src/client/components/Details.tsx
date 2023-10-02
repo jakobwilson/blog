@@ -76,8 +76,8 @@ interface Iblog {
           e.preventDefault();
           try {
             const updateData = {
-              content: editedTitle,
-              location: editedContent,
+              title: editedTitle,
+              content: editedContent,
             };
       
             const res = await fetch(`/api/blogs/${blogId}`, {

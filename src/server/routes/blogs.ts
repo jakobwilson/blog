@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         console.log(req.body)
-        const { title, content, authorid } = req.body;
+        const { title, content, authorid, tagid } = req.body;
         if (!title || !content || !authorid) return res.status(400).json({message: "missing info."});
         const results = await database.blogs.create(title, content, authorid);
         res.status(201).json({message: "Blog post created!"});
@@ -55,10 +55,12 @@ router.delete('/:id', async (req, res) => {
 // PUT /api/blogs/123
 router.put('/:id', async (req, res) => {
     try {
+        console.log(req.body)
+
         const id = Number(req.params.id);
-        const { authorid, title, content } = req.body;
+        const { title, content } = req.body;
         if (!title || !content) return res.status(400).json({message: "missing data."});
-        const results = await database.blogs.update(authorid, title, content);
+        const results = await database.blogs.update(id, title, content);
         res.status(201).json({message: "blog updated.", results});
     } catch(e) {
         console.log(e);

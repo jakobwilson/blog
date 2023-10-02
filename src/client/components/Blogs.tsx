@@ -40,7 +40,7 @@ const BlogApp = () => {
       <div className="container">
         <h1>BLOGS</h1>
       </div>
-      <ul className="blog-list">
+      <ul className="container">
         {blogs.map((blog) => (
           <li key={blog.id}>
             <p className="blog-title">{blog.title}</p>
@@ -52,7 +52,7 @@ const BlogApp = () => {
           </li>
         ))}
       </ul>
-      <Link to="/create"><div className="btn btn-primary">POST</div></Link>
+      <Link to="/create"><div className="post-btn end-0 bottom-0">POST</div></Link>
     </>
   );
 };

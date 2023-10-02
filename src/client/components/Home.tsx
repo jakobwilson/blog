@@ -67,7 +67,7 @@ const Home = () => {
             Don't forget to use your blog tags at least on the single Blog
             component!</li>
         </ul>
-        <Link to="/create"><div className="btn btn-primary">POST</div></Link>
+        <Link to="/create"><div className="post-btn-home end-0 bottom-0">POST</div></Link>
       </div>
     </>
   );
