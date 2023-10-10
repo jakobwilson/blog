@@ -1,11 +1,13 @@
 import * as mysql from "mysql";
+//import mysql from 'mysql2/promise'
 import config from "../config";
 import blogs from "./blogs";
 import blogtags from "./blogtags";
 import tags from "./tags";
 import authors from "./authors";
 
-export const Connection = mysql.createPool(config.mysql);
+export const Connection = mysql.createPool(config.db);
+
 
 
 export const Query = <T=mysql.OkPacket>(query: string, values?:Array<string | number>) => {
@@ -23,5 +25,6 @@ export default {
     blogs,
     blogtags,
     tags,
-    authors
+    authors,
+    config
 }

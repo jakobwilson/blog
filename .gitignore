@@ -3,6 +3,6 @@
 
 node_modules/
 
-src/server/config
+*.env
 dist/
 public/js/app.js
