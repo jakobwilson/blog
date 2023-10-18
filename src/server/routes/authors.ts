@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
         res.json(authors[0]);
     } catch (e) {
         console.log(e);
-        res.status(500);
+        res.status(500).json({message: "Unabale to get Author."});
     }
 });
 

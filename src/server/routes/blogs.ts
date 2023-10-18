@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
         
     } catch(e) {
         console.log(e);
-        res.sendStatus(500).json({message: "Unable to get blogs"})
+        res.status(500).json({message: "Unable to get blogs"})
     }
 });
 
@@ -67,7 +67,7 @@ router.put('/:id', async (req, res) => {
         res.status(201).json({message: "blog updated.", results});
     } catch(e) {
         console.log(e);
-        res.status(500);
+        res.status(500).json({message: "Unable to edit blog."});
     }
 });
 
